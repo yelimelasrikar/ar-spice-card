@@ -4,89 +4,37 @@
   <title>Flavarich Spice AR</title>
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <style>
-    body { margin: 0; overflow: hidden; }
-  </style>
 </head>
-
-<body style="margin: 0px; overflow: hidden;">
-
-  <a-scene 
-    embedded 
-    arjs="sourceType: webcam; debugUIEnabled: false;"
-    vr-mode-ui="enabled: false">
-
-    <!-- ASSETS: Added crossorigin="anonymous" to fix the black box issue -->
+<body style="margin: 0; overflow: hidden;">
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false">
+    
     <a-assets>
-      <img id="chili" src="https://live.staticflickr.com/65535/53123456789_abcdefgh_z.jpg" crossorigin="anonymous">
-      <img id="turmeric" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Turmeric_powder.jpg/640px-Turmeric_powder.jpg" crossorigin="anonymous">
-      <img id="spices" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chili_powder.jpg/640px-Chili_powder.jpg" crossorigin="anonymous">
+      <!-- Use local paths here -->
+      <img id="img1" src="chili.jpg">
+      <img id="img2" src="turmeric.jpg">
+      <img id="img3" src="spices.jpg">
     </a-assets>
 
     <a-marker preset="hiro">
-      
-      <!-- MAIN CONTAINER: This rotates everything to face the user vertically -->
-      <a-entity rotation="0 0 0" position="0 0 0">
+      <!-- Container to tilt everything toward the camera -->
+      <a-entity rotation="-60 0 0" position="0 0 0">
         
-        <!-- HEADER BACKGROUND -->
-        <a-plane position="0 1.6 0" width="2.2" height="0.4" color="#000" opacity="0.7"></a-plane>
-        <a-text 
-          value="FLAVARICH SPICES" 
-          position="0 1.6 0.01" 
-          align="center" 
-          color="#FFD700" 
-          width="4"
-          font="https://cdn.aframe.io/fonts/Exo2Bold.fnt">
-        </a-text>
+        <!-- TITLE -->
+        <a-text value="FLAVARICH SPICES" align="center" position="0 1.2 0" color="#FFD700" width="4"></a-text>
 
-        <!-- SUBTITLE -->
-        <a-text 
-          value="Authentic Spice Experience" 
-          position="0 1.3 0" 
-          align="center" 
-          color="#00FFFF" 
-          width="3">
-        </a-text>
+        <!-- IMAGES -->
+        <a-image src="#img1" position="0 0.5 0.1" width="1.2" height="0.8"></a-image>
+        <a-image src="#img2" position="-1.1 0.4 0" width="0.7" height="0.5"></a-image>
+        <a-image src="#img3" position="1.1 0.4 0" width="0.7" height="0.5"></a-image>
 
-        <!-- CENTER IMAGE (Chili) -->
-        <!-- Note: If image is still black, it's a CORS block. I've added a fallback color -->
-        <a-image 
-          src="#chili" 
-          position="0 0.7 0" 
-          width="1.2" 
-          height="0.8"
-          material="color: #ffffff; shader: flat;">
-        </a-image>
-
-        <!-- SIDE IMAGES -->
-        <a-image src="#turmeric" position="-1.1 0.5 0" width="0.7" height="0.6" crossorigin="anonymous"></a-image>
-        <a-image src="#spices" position="1.1 0.5 0" width="0.7" height="0.6" crossorigin="anonymous"></a-image>
-
-        <!-- BOTTOM FEATURES PANEL -->
-        <a-plane position="0 0 0" width="2.5" height="0.3" color="#4CAF50" opacity="0.9"></a-plane>
-        <a-text 
-          value="Rich Aroma | Quality Tested | Hygienic" 
-          position="0 0 0.01" 
-          align="center" 
-          color="white" 
-          width="2.5">
-        </a-text>
-
-        <!-- ROTATING LOGO BOX -->
-        <a-box 
-          position="0 -0.4 0" 
-          scale="0.2 0.2 0.2" 
-          color="yellow"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 3000; easing: linear">
-        </a-box>
+        <!-- TEXT BAR -->
+        <a-plane color="#000" opacity="0.6" position="0 -0.2 0.1" width="2.4" height="0.3"></a-plane>
+        <a-text value="Rich Aroma | Quality Tested | Hygienic" align="center" position="0 -0.2 0.11" color="white" width="2.5"></a-text>
 
       </a-entity>
-
     </a-marker>
 
     <a-entity camera></a-entity>
-
   </a-scene>
-
 </body>
 </html>
