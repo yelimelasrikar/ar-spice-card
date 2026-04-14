@@ -1,80 +1,98 @@
-<a-marker preset="hiro">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spice AR Marketing</title>
 
-  <!-- 🌶 CENTER PRODUCT IMAGE -->
-  <a-image 
-    src="https://upload.wikimedia.org/wikipedia/commons/3/36/Red_chili_powder.jpg"
-    position="0 0.6 0"
-    width="1"
-    height="0.7">
-  </a-image>
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
 
-  <!-- 🟡 TITLE (CENTERED) -->
-  <a-text 
-    value="Flavarich Spices"
-    position="0 1.4 0"
-    align="center"
-    color="yellow"
-    scale="1.5 1.5 1.5">
-  </a-text>
+  <!-- AR.js -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
-  <!-- 🔵 TAGLINE -->
-  <a-text 
-    value="True Taste of Authentic Spices"
-    position="0 1.1 0"
-    align="center"
-    color="cyan"
-    scale="1 1 1">
-  </a-text>
+  <style>
+    body { margin:0; overflow:hidden; }
+  </style>
+</head>
 
-  <!-- ⚪ FEATURES (VERTICAL STACK) -->
-  <a-text 
-    value="Rich Aroma\nQuality Tested\nHygienic Packaging"
-    position="0 0.8 0"
-    align="center"
-    color="white"
-    scale="0.8 0.8 0.8">
-  </a-text>
+<body>
 
-  <!-- 🟠 LEFT PRODUCT (TURMERIC) -->
-  <a-image 
-    src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Turmeric_powder.jpg"
-    position="-1 0.5 0"
-    width="0.6"
-    height="0.5">
-  </a-image>
+<a-scene 
+  embedded 
+  arjs="sourceType: webcam; debugUIEnabled: false;"
+  vr-mode-ui="enabled: false">
 
-  <!-- 🔴 RIGHT PRODUCT (CHILLI) -->
-  <a-image 
-    src="https://upload.wikimedia.org/wikipedia/commons/4/45/Chili_powder.jpg"
-    position="1 0.5 0"
-    width="0.6"
-    height="0.5">
-  </a-image>
+  <!-- MARKER -->
+  <a-marker preset="hiro">
 
-  <!-- 🟢 ROTATING PRODUCT BOX -->
-  <a-box position="0 -0.2 0"
-         color="#4CAF50"
-         depth="0.4"
-         height="0.4"
-         width="0.4">
-    <a-animation attribute="rotation"
-                 to="0 360 0"
-                 dur="3000"
-                 repeat="indefinite">
-    </a-animation>
-  </a-box>
+    <!-- 🌶 CENTER IMAGE -->
+    <a-image 
+      src="https://upload.wikimedia.org/wikipedia/commons/3/36/Red_chili_powder.jpg"
+      position="0 0.6 0"
+      width="1"
+      height="0.7">
+    </a-image>
 
-  <!-- 🔵 FLOW ANIMATION -->
-  <a-sphere position="-0.5 -0.4 0"
-            radius="0.1"
-            color="blue">
-    <a-animation attribute="position"
-                 from="-0.5 -0.4 0"
-                 to="0.5 -0.4 0"
-                 dur="1500"
-                 direction="alternate"
-                 repeat="indefinite">
-    </a-animation>
-  </a-sphere>
+    <!-- TITLE -->
+    <a-text 
+      value="Flavarich Spices"
+      position="0 1.4 0"
+      align="center"
+      color="yellow"
+      scale="1.2 1.2 1.2">
+    </a-text>
 
-</a-marker>
+    <!-- TAGLINE -->
+    <a-text 
+      value="Authentic Spice Experience"
+      position="0 1.1 0"
+      align="center"
+      color="cyan">
+    </a-text>
+
+    <!-- FEATURES -->
+    <a-text 
+      value="Rich Aroma\nQuality Tested\nHygienic Packaging"
+      position="0 0.8 0"
+      align="center"
+      color="white"
+      scale="0.7 0.7 0.7">
+    </a-text>
+
+    <!-- LEFT IMAGE -->
+    <a-image 
+      src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Turmeric_powder.jpg"
+      position="-1 0.4 0"
+      width="0.6"
+      height="0.5">
+    </a-image>
+
+    <!-- RIGHT IMAGE -->
+    <a-image 
+      src="https://upload.wikimedia.org/wikipedia/commons/4/45/Chili_powder.jpg"
+      position="1 0.4 0"
+      width="0.6"
+      height="0.5">
+    </a-image>
+
+    <!-- ROTATING BOX -->
+    <a-box position="0 -0.2 0"
+           color="#4CAF50"
+           depth="0.4"
+           height="0.4"
+           width="0.4">
+      <a-animation attribute="rotation"
+                   to="0 360 0"
+                   dur="3000"
+                   repeat="indefinite">
+      </a-animation>
+    </a-box>
+
+  </a-marker>
+
+  <!-- CAMERA -->
+  <a-entity camera></a-entity>
+
+</a-scene>
+
+</body>
+</html>
