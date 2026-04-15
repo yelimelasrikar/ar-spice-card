@@ -5,22 +5,28 @@
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
+
 <body style="margin: 0; overflow: hidden;">
   <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false">
     
     <a-assets>
-      <!-- Use local paths here -->
-      <img id="img1" src="chili.jpg">
-      <img id="img2" src="turmeric.jpg">
-      <img id="img3" src="spices.jpg">
+      <!-- ✅ Correct file names -->
+      <img id="img1" src="chili.png">
+      <img id="img2" src="turmeric.png">
+      <img id="img3" src="spices.png">
     </a-assets>
 
     <a-marker preset="hiro">
-      <!-- Container to tilt everything toward the camera -->
       <a-entity rotation="-60 0 0" position="0 0 0">
         
         <!-- TITLE -->
-        <a-text value="FLAVARICH SPICES" align="center" position="0 1.2 0" color="#FFD700" width="4"></a-text>
+        <a-text 
+          value="FLAVARICH SPICES" 
+          align="center" 
+          position="0 1.2 0" 
+          color="#FFD700" 
+          width="4">
+        </a-text>
 
         <!-- IMAGES -->
         <a-image src="#img1" position="0 0.5 0.1" width="1.2" height="0.8"></a-image>
@@ -29,7 +35,13 @@
 
         <!-- TEXT BAR -->
         <a-plane color="#000" opacity="0.6" position="0 -0.2 0.1" width="2.4" height="0.3"></a-plane>
-        <a-text value="Rich Aroma | Quality Tested | Hygienic" align="center" position="0 -0.2 0.11" color="white" width="2.5"></a-text>
+        <a-text 
+          value="Rich Aroma | Quality Tested | Hygienic" 
+          align="center" 
+          position="0 -0.2 0.11" 
+          color="white" 
+          width="2.5">
+        </a-text>
 
       </a-entity>
     </a-marker>
@@ -37,4 +49,4 @@
     <a-entity camera></a-entity>
   </a-scene>
 </body>
-</html>   
+</html>
