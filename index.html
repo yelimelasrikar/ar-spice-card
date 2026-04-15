@@ -1,108 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Flavarich AR Shop</title>
+  <title>Flavarich AR</title>
 
-  <!-- AFRAME -->
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-
-  <!-- AR.js -->
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-
-  <!-- Gesture for touch -->
-  <script src="https://unpkg.com/aframe-gesture-detector/dist/aframe-gesture-detector.min.js"></script>
-  <script src="https://unpkg.com/aframe-super-hands-component/dist/aframe-super-hands-component.min.js"></script>
 </head>
 
 <body style="margin: 0; overflow: hidden;">
 
 <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false">
 
-  <!-- ASSETS -->
+  <!-- ✅ ASSETS -->
   <a-assets>
-    <a-asset-item id="model" src="model.glb"></a-asset-item>
+    <img id="chiliImg" src="chili.png">
+    <img id="turmericImg" src="turmeric.png">
+    <img id="spicesImg" src="spices.png">
+
+    <!-- 🔥 YOUR 3D MODEL -->
+    <a-asset-item id="chiliModel" src="hot.glb"></a-asset-item>
   </a-assets>
 
-  <!-- MARKER -->
+  <!-- ✅ MARKER -->
   <a-marker preset="hiro">
 
-    <a-entity id="product" position="0 0.5 0" rotation="-60 0 0">
-
-      <!-- 🔥 3D PRODUCT -->
-      <a-entity 
-        id="model3D"
-        gltf-model="#model"
-        scale="0.5 0.5 0.5"
-        class="clickable"
-        gesture-handler>
-      </a-entity>
-
-      <!-- 💰 PRICE TEXT (HIDDEN INITIALLY) -->
-      <a-text 
-        id="priceText"
-        value="₹199"
-        position="0 1.2 0"
-        align="center"
-        color="yellow"
-        visible="false">
-      </a-text>
-
-      <!-- 🛒 BUY BUTTON -->
-      <a-plane 
-        id="buyBtn"
-        position="0 -0.5 0"
-        width="1.5"
-        height="0.4"
-        color="green"
-        class="clickable">
-      </a-plane>
-
-      <a-text 
-        value="BUY NOW"
-        position="0 -0.5 0.1"
-        align="center"
-        color="white">
-      </a-text>
-
+    <!-- 🔥 3D MODEL (CENTER) -->
+    <a-entity 
+      gltf-model="#chiliModel"
+      position="0 0.4 0"
+      scale="0.4 0.4 0.4"
+      rotation="0 0 0"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 4000">
     </a-entity>
+
+    <!-- 🖼 SIDE IMAGES -->
+    <a-image src="#chiliImg" position="-1 0.3 0" width="0.8" height="0.6"></a-image>
+    <a-image src="#turmericImg" position="1 0.3 0" width="0.8" height="0.6"></a-image>
+    <a-image src="#spicesImg" position="0 -0.6 0" width="1.2" height="0.7"></a-image>
+
+    <!-- 💰 PRICE -->
+    <a-text 
+      value="₹199"
+      position="0 1 0"
+      align="center"
+      color="yellow"
+      width="3">
+    </a-text>
+
+    <!-- 🛒 BUY BUTTON -->
+    <a-plane 
+      id="buyBtn"
+      position="0 -1 0"
+      width="1.5"
+      height="0.4"
+      color="green">
+    </a-plane>
+
+    <a-text 
+      value="BUY NOW"
+      position="0 -1 0.1"
+      align="center"
+      color="white"
+      width="2">
+    </a-text>
 
   </a-marker>
 
-  <!-- CAMERA + CURSOR -->
-  <a-entity camera>
-    <a-cursor fuse="true" fuse-timeout="800"></a-cursor>
-  </a-entity>
+  <!-- CAMERA -->
+  <a-entity camera></a-entity>
 
 </a-scene>
 
-<!-- INTERACTION SCRIPT -->
+<!-- 🔥 INTERACTION -->
 <script>
-  const model = document.querySelector("#model3D");
-  const price = document.querySelector("#priceText");
-  const buyBtn = document.querySelector("#buyBtn");
-
-  // 🔥 Tap to Rotate
-  model.addEventListener("click", () => {
-    model.setAttribute("animation", {
-      property: "rotation",
-      to: "0 360 0",
-      dur: 2000
-    });
-  });
-
-  // 💰 Click → Show Price
-  model.addEventListener("mouseenter", () => {
-    price.setAttribute("visible", true);
-  });
-
-  model.addEventListener("mouseleave", () => {
-    price.setAttribute("visible", false);
-  });
-
-  // 🛒 BUY BUTTON
-  buyBtn.addEventListener("click", () => {
-    alert("Redirecting to purchase page...");
-    window.open("https://your-product-link.com", "_blank");
+  document.querySelector("#buyBtn").addEventListener("click", () => {
+    alert("Redirecting to purchase...");
+    window.open("https://your-link.com", "_blank");
   });
 </script>
 
