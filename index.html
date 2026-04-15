@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Flavarich AR</title>
+  <title>Flavarich AR Fixed</title>
 
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
@@ -11,70 +11,78 @@
 
 <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false">
 
-  <!-- ✅ ASSETS -->
   <a-assets>
     <img id="chiliImg" src="chili.png">
     <img id="turmericImg" src="turmeric.png">
     <img id="spicesImg" src="spices.png">
-
-    <!-- 🔥 YOUR 3D MODEL -->
-    <a-asset-item id="chiliModel" src="hot.glb"></a-asset-item>
+    <a-asset-item id="model" src="hot.glb"></a-asset-item>
   </a-assets>
 
-  <!-- ✅ MARKER -->
   <a-marker preset="hiro">
 
-    <!-- 🔥 3D MODEL (CENTER) -->
-    <a-entity 
-      gltf-model="#chiliModel"
-      position="0 0.4 0"
-      scale="0.4 0.4 0.4"
-      rotation="0 0 0"
-      animation="property: rotation; to: 0 360 0; loop: true; dur: 4000">
+    <!-- 🔥 ROTATED CONTAINER (IMPORTANT FIX) -->
+    <a-entity rotation="-90 0 0">
+
+      <!-- 3D MODEL -->
+      <a-entity 
+        gltf-model="#model"
+        position="0 0 0.5"
+        scale="0.3 0.3 0.3"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 4000">
+      </a-entity>
+
+      <!-- TITLE -->
+      <a-text 
+        value="FLAVARICH SPICES"
+        position="0 1 0"
+        align="center"
+        color="yellow"
+        width="4">
+      </a-text>
+
+      <!-- SIDE IMAGES -->
+      <a-image src="#chiliImg" position="-1 0.3 0" width="0.8" height="0.6"></a-image>
+      <a-image src="#turmericImg" position="1 0.3 0" width="0.8" height="0.6"></a-image>
+
+      <!-- BOTTOM IMAGE -->
+      <a-image src="#spicesImg" position="0 -0.5 0" width="1.2" height="0.7"></a-image>
+
+      <!-- PRICE -->
+      <a-text 
+        value="₹199"
+        position="0 1.5 0"
+        align="center"
+        color="white"
+        width="3">
+      </a-text>
+
+      <!-- BUY BUTTON -->
+      <a-plane 
+        id="buyBtn"
+        position="0 -1 0"
+        width="1.5"
+        height="0.4"
+        color="green">
+      </a-plane>
+
+      <a-text 
+        value="BUY NOW"
+        position="0 -1 0.1"
+        align="center"
+        color="white"
+        width="2">
+      </a-text>
+
     </a-entity>
-
-    <!-- 🖼 SIDE IMAGES -->
-    <a-image src="#chiliImg" position="-1 0.3 0" width="0.8" height="0.6"></a-image>
-    <a-image src="#turmericImg" position="1 0.3 0" width="0.8" height="0.6"></a-image>
-    <a-image src="#spicesImg" position="0 -0.6 0" width="1.2" height="0.7"></a-image>
-
-    <!-- 💰 PRICE -->
-    <a-text 
-      value="₹199"
-      position="0 1 0"
-      align="center"
-      color="yellow"
-      width="3">
-    </a-text>
-
-    <!-- 🛒 BUY BUTTON -->
-    <a-plane 
-      id="buyBtn"
-      position="0 -1 0"
-      width="1.5"
-      height="0.4"
-      color="green">
-    </a-plane>
-
-    <a-text 
-      value="BUY NOW"
-      position="0 -1 0.1"
-      align="center"
-      color="white"
-      width="2">
-    </a-text>
 
   </a-marker>
 
-  <!-- CAMERA -->
   <a-entity camera></a-entity>
 
 </a-scene>
 
-<!-- 🔥 INTERACTION -->
 <script>
   document.querySelector("#buyBtn").addEventListener("click", () => {
-    alert("Redirecting to purchase...");
     window.open("https://your-link.com", "_blank");
   });
 </script>
